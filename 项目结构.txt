@@ -1,0 +1,43 @@
+Parts
+UI
+ImageProcess
+
+YCBCR ITU-T T.871 http://www.ijg.org/files/T-REC-T.871-201105-I!!PDF-E.pdf
+
+kornia 实现 https://kornia.readthedocs.io/en/latest/_modules/kornia/color/ycbcr.html
+Colourful  https://github.com/tompazourek/Colourful
+Magick.NET 
+ImageSharp 可行 https://docs.sixlabors.com/api/ImageSharp/SixLabors.ImageSharp.ColorSpaces.Conversion.ColorSpaceConverter.html#SixLabors_ImageSharp_ColorSpaces_Conversion_ColorSpaceConverter_Convert_System_ReadOnlySpan_SixLabors_ImageSharp_ColorSpaces_Rgb__System_Span_SixLabors_ImageSharp_ColorSpaces_CieLuv__
+
+
+MessageSys
+DeepL
+
+
+Class
+
+
+
+
+
+UnitTest
+
+
+
+
+
+
+
+TODO：
+1.DirectML编译
+2.CPU/GPU内存开销分析 
+Tune Performance 
+
+Graph Optimization
+https://fs-eire.github.io/onnxruntime/docs/performance/graph-optimizations.html
+Quantize ONNX Models
+https://github.com/microsoft/onnxruntime-inference-examples/tree/main/quantization/image_classification/cpu
+
+3.图片奇数尺寸问题
+接口上做裁切
+4.模型优化
