@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiDemo", "MauiDemo.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageSys", "..\MessageSys\MessageSys.csproj", "{75804D35-4F4A-4D73-A60A-F96A819E8D07}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnnxRuntimeWrapper", "..\OnnxRuntimeWrapper\OnnxRuntimeWrapper.csproj", "{88439287-0E98-4E0C-8A51-313F3992FB6D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,10 +23,6 @@ Global
 		{75804D35-4F4A-4D73-A60A-F96A819E8D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75804D35-4F4A-4D73-A60A-F96A819E8D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75804D35-4F4A-4D73-A60A-F96A819E8D07}.Release|Any CPU.Build.0 = Release|Any CPU
-		{88439287-0E98-4E0C-8A51-313F3992FB6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88439287-0E98-4E0C-8A51-313F3992FB6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88439287-0E98-4E0C-8A51-313F3992FB6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88439287-0E98-4E0C-8A51-313F3992FB6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

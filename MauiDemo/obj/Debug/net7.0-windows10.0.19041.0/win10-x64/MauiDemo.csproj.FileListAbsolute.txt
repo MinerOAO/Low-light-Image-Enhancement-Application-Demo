@@ -322,3 +322,9 @@ E:\Projects\MauiDemo\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\qualifiers.t
 E:\Projects\MauiDemo\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 E:\Projects\MauiDemo\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
 E:\Projects\MauiDemo\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
+E:\Projects\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\SixLabors.ImageSharp.dll
+E:\Projects\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\onnxruntime.dll
+E:\Projects\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\onnxruntime_providers_shared.dll
+E:\Projects\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Microsoft.ML.OnnxRuntime.dll
+E:\Projects\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\onnxruntime.lib
+E:\Projects\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\onnxruntime_providers_shared.lib

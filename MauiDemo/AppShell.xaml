@@ -10,6 +10,9 @@
         <ShellContent
             Title="Notes"
             ContentTemplate="{DataTemplate local:MainPage}"/>
+        <ShellContent
+            Title="Select"
+            ContentTemplate="{DataTemplate local:SelectPage}"/>
 
         <ShellContent
             Title="About"
