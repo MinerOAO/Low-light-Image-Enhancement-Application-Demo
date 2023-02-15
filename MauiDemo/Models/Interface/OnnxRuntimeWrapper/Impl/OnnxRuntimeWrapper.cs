@@ -13,14 +13,6 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
         {
             _model = model;
         }
-        public async static Task<OnnxRuntimeWrapper> LoadModel(string modelName)
-        {
-            using var stream = await FileSystem.OpenAppPackageFileAsync(modelName);
-            var data = new byte[stream.Length];
-            await stream.ReadAsync(data);
-            var instance = new OnnxRuntimeWrapper(data);
-            return instance;
-        }
         //Global Implement
         private partial DenseTensor<float> ToRGBTensor(Image<Rgb24> RGBImage)
         {
