@@ -30,13 +30,13 @@
     <AppXManifest Include="E:\Projects\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2023-02-15T16:13:29.437</Modified>
+      <Modified>2023-02-16T13:37:53.498</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="E:\Projects\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2023-02-15T16:13:28.197</Modified>
+      <Modified>2023-02-16T13:37:52.941</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\Projects\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\MauiDemo.runtimeconfig.json">
       <PackagePath>MauiDemo.runtimeconfig.json</PackagePath>
@@ -44,11 +44,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\Projects\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\MauiDemo.dll">
       <PackagePath>MauiDemo.dll</PackagePath>
-      <Modified>2023-02-15T16:13:26.477</Modified>
+      <Modified>2023-02-16T13:37:51.654</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\Projects\MauiDemo\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>MauiDemo.exe</PackagePath>
-      <Modified>2023-02-15T16:13:26.577</Modified>
+      <Modified>2023-02-16T13:37:51.750</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\zi200\.nuget\packages\microsoft.ai.directml\1.9.1\bin\x64-win\DirectML.dll">
       <PackagePath>DirectML.dll</PackagePath>
@@ -944,7 +944,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="E:\Projects\MauiDemo\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\MauiDemo.deps.json">
       <PackagePath>MauiDemo.deps.json</PackagePath>
-      <Modified>2023-02-15T16:13:29.207</Modified>
+      <Modified>2023-02-16T13:37:53.326</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files\dotnet\packs\Microsoft.Maui.Controls.Ref.win\7.0.59\ref\net7.0-windows10.0.19041\Microsoft.Maui.Controls.Compatibility.pri">
       <PackagePath>Microsoft.Maui.Controls.Compatibility.pri</PackagePath>

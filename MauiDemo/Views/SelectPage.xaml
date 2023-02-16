@@ -3,23 +3,73 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiDemo.Views.SelectPage"
              Title="SelectPage">
-    <AbsoluteLayout>
+    <FlexLayout
+        Direction="Column"
+        AlignItems="Center"
+        JustifyContent="SpaceEvenly">
         <Image
                 x:Name="SelectedImage"
                 SemanticProperties.Description="Image"
                 HorizontalOptions="Center"
+                Aspect="AspectFit"
+                MinimumHeightRequest="100"
+                MaximumHeightRequest="300"
             />
+        <VerticalStackLayout
+            HorizontalOptions="Fill">
+            <HorizontalStackLayout>
+                <CheckBox
+                x:Name="SplitCheckBox"
+                IsChecked="true" 
+                CheckedChanged="OnSplitCheckBoxChanged">
+
+                </CheckBox>
+                <Label 
+                Text="FlexLayout in Action"
+                FontSize="18"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"/>
+            </HorizontalStackLayout>
+            <Label 
+                x:Name="GammaSliderValueDisplay"
+                Text="{Binding Source={x:Reference GammaSlider},
+                              Path=Value,
+                              StringFormat='Gamma {0:F2}'}" />
+            <Slider 
+                x:Name="GammaSlider"
+                Maximum="2"
+                ValueChanged="OnSliderValueChanged" />
+            <Label 
+                x:Name="StrengthSliderValueDisplay"
+                Text="{Binding Source={x:Reference StrengthSlider},
+                            Path=Value,
+                            StringFormat='Denoise Strength {0:F2}'}"/>
+            <Slider 
+                x:Name="StrengthSlider"
+                Maximum="1"
+                ValueChanged="OnSliderValueChanged" />
+        </VerticalStackLayout>
         <Button
                 x:Name="SelectBtn"
                 Text="Select"
                 SemanticProperties.Hint="Select image from device storage"
                 Clicked="OnSelectClicked"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"
+                MinimumWidthRequest="100"
+                WidthRequest="150"
+                MaximumWidthRequest="200"
+           />
         <Button
                 x:Name="PhotoBtn"
                 Text="Shot"
                 SemanticProperties.Hint="Take a photo"
                 Clicked="OnPhotoClicked"
-                HorizontalOptions="End" />
-    </AbsoluteLayout>
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                MinimumWidthRequest="100"
+                WidthRequest="150"
+                MaximumWidthRequest="200"
+                />
+    </FlexLayout>
 </ContentPage>

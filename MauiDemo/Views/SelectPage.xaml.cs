@@ -47,4 +47,13 @@ public partial class SelectPage : ContentPage
 
         SemanticScreenReader.Announce(SelectBtn.Text);
     }
+
+    private void OnSplitCheckBoxChanged(object sender, CheckedChangedEventArgs e)
+    {
+
+    }
+    private void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
+    {
+
+    }
 }

@@ -47,7 +47,8 @@ ORT_PARALLEL VS ORT_SEQUENTIAL MEMORY
 mobilenet
 分割模型 Doable =>重用 buffer Reuse input/output tensor buffers https://onnxruntime.ai/docs/get-started/with-csharp.html
 分割图像 
-减通道？ 减分辨率？
+减通道？ 
+减分辨率？（基本不考虑）
 5. 测试安卓
 使用原版包 开启、关闭NNAPI
 使用Directml

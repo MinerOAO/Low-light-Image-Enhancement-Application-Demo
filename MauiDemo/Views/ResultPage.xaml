@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiDemo.Views.ResultPage"
+             Title="ResultPage">
+    <FlexLayout
+        Direction="Column"
+        AlignItems="Center"
+        JustifyContent="SpaceEvenly">
+        <Image
+                x:Name="ResultImage"
+                SemanticProperties.Description="ResultImage"
+                HorizontalOptions="Center"
+                Aspect="AspectFit"
+                MinimumHeightRequest="100"
+                MaximumHeightRequest="300"
+            />
+        <Button
+                x:Name="ShareBtn"
+                Text="Share"
+                SemanticProperties.Hint="Share image"
+                Clicked="OnShareClicked"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"
+                MinimumWidthRequest="100"
+                WidthRequest="150"
+                MaximumWidthRequest="200"
+           />
+        <Button
+                x:Name="CompleteBtn"
+                Text="Complete"
+                SemanticProperties.Hint="Complete process"
+                Clicked="OnCompleteClicked"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                MinimumWidthRequest="100"
+                WidthRequest="150"
+                MaximumWidthRequest="200"
+                />
+    </FlexLayout>
+</ContentPage>
