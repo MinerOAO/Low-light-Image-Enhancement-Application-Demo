@@ -1,1 +1,1 @@
-E:\Projects\MauiDemo\MauiDemo.csproj;x64
+F:\coding\MAUI\MAUIDemo\MauiDemo\MauiDemo.csproj;x64

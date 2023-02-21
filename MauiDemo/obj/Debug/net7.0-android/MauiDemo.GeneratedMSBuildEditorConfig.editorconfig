@@ -12,51 +12,51 @@ build_property.EnableSingleFileAnalyzer = true
 build_property.EnableTrimAnalyzer = false
 build_property.IncludeAllContentForSelfExtract = 
 build_property.RootNamespace = MauiDemo
-build_property.ProjectDir = E:\Projects\MauiDemo\
+build_property.ProjectDir = F:\coding\MAUI\MAUIDemo\MauiDemo\
 
-[E:/Projects/MauiDemo/App.xaml]
+[F:/coding/MAUI/MAUIDemo/MauiDemo/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiDemo.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[E:/Projects/MauiDemo/AppShell.xaml]
+[F:/coding/MAUI/MAUIDemo/MauiDemo/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiDemo.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[E:/Projects/MauiDemo/Resources/Styles/Colors.xaml]
+[F:/coding/MAUI/MAUIDemo/MauiDemo/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiDemo.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
 
-[E:/Projects/MauiDemo/Resources/Styles/Styles.xaml]
+[F:/coding/MAUI/MAUIDemo/MauiDemo/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiDemo.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
 
-[E:/Projects/MauiDemo/Views/AboutPage.xaml]
+[F:/coding/MAUI/MAUIDemo/MauiDemo/Views/AboutPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiDemo.Views.AboutPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\AboutPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\AboutPage.xaml
 
-[E:/Projects/MauiDemo/Views/MainPage.xaml]
+[F:/coding/MAUI/MAUIDemo/MauiDemo/Views/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiDemo.Views.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\MainPage.xaml
 
-[E:/Projects/MauiDemo/Views/ResultPage.xaml]
+[F:/coding/MAUI/MAUIDemo/MauiDemo/Views/ResultPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiDemo.Views.ResultPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\ResultPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\ResultPage.xaml
 
-[E:/Projects/MauiDemo/Views/SelectPage.xaml]
+[F:/coding/MAUI/MAUIDemo/MauiDemo/Views/SelectPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = MauiDemo.Views.SelectPage.xaml
 build_metadata.AdditionalFiles.TargetPath = Views\SelectPage.xaml

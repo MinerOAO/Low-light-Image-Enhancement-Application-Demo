@@ -5,13 +5,13 @@
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\zi200\.nuget\packages\;E:\Visual Studio 2022 Shared\NuGetPackages</NuGetPackageFolders>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\MinerOAO\.nuget\packages\;C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
     <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.4.0</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <SourceRoot Include="C:\Users\zi200\.nuget\packages\" />
-    <SourceRoot Include="E:\Visual Studio 2022 Shared\NuGetPackages\" />
+    <SourceRoot Include="C:\Users\MinerOAO\.nuget\packages\" />
+    <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
   </ItemGroup>
   <ImportGroup Condition=" '$(TargetFramework)' == 'net7.0-android' AND '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.ai.directml\1.9.1\build\Microsoft.AI.DirectML.props" Condition="Exists('$(NuGetPackageRoot)microsoft.ai.directml\1.9.1\build\Microsoft.AI.DirectML.props')" />
@@ -32,6 +32,6 @@
     <Import Project="$(NuGetPackageRoot)microsoft.ml.onnxruntime.directml\1.13.1\build\netstandard2.0\Microsoft.ML.OnnxRuntime.DirectML.props" Condition="Exists('$(NuGetPackageRoot)microsoft.ml.onnxruntime.directml\1.13.1\build\netstandard2.0\Microsoft.ML.OnnxRuntime.DirectML.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(TargetFramework)' == 'net7.0-windows10.0.19041.0' AND '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgMicrosoft_WindowsAppSDK Condition=" '$(PkgMicrosoft_WindowsAppSDK)' == '' ">C:\Users\zi200\.nuget\packages\microsoft.windowsappsdk\1.2.221209.1</PkgMicrosoft_WindowsAppSDK>
+    <PkgMicrosoft_WindowsAppSDK Condition=" '$(PkgMicrosoft_WindowsAppSDK)' == '' ">C:\Users\MinerOAO\.nuget\packages\microsoft.windowsappsdk\1.2.221209.1</PkgMicrosoft_WindowsAppSDK>
   </PropertyGroup>
 </Project>

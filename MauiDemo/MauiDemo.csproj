@@ -50,6 +50,8 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Raw\Bread_onnx_optimized.onnx" />
+	  <None Remove="Resources\Raw\Bread_onnx_optimized_dynamic_quantized.onnx" />
+	  <None Remove="Resources\Raw\Bread_onnx_test.onnx" />
 	</ItemGroup>
 
 	<ItemGroup>

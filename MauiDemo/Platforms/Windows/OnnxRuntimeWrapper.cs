@@ -4,11 +4,12 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
 {
     public partial class OnnxRuntimeWrapper
     {
-        partial void Run(List<NamedOnnxValue> inputData)
+        partial void Run(List<NamedOnnxValue> inputData, ref int sessionID)
         {
             var options = new SessionOptions();
             options.AddSessionConfigEntry("enable_profiling", "true");
             options.AppendExecutionProvider_CPU();
+
             //Memory Consumption ?
 
             //options.ExecutionMode = ExecutionMode.ORT_PARALLEL;
@@ -35,18 +36,22 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
 
             //options.EnableMemoryPattern = false;
             options.ExecutionMode = ExecutionMode.ORT_SEQUENTIAL;
-
+            
             try
             {
                 //Must: model(binary or string path)
-                //Optional: session weights
+                //Optional: session && weights
                 //DIRECTML Package issue : https://github.com/microsoft/onnxruntime/issues/13429
-                using var _ort = new InferenceSession(Model, options);
-                // WIP:
-
-                var result = _ort.Run(inputData);
-                //result.AsEnumerable<float>().ToArray()
-                outputData = result.First().AsEnumerable<float>();
+                using (var _ort = new InferenceSession(Model, options))
+                {
+                    // WIP:
+                    using (var result = _ort.Run(inputData))
+                    {
+                        sessionID = _ort.GetHashCode();
+                        outputData.Add(sessionID, result.First().AsEnumerable<float>().ToList());
+                    }
+                    //result.AsEnumerable<float>().ToArray()
+                }
             }
             catch(OnnxRuntimeException ortEx)
             {
@@ -56,7 +61,6 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
             {
                 Console.WriteLine(ex.ToString());
             }
-            return;
         }
     }
 }

@@ -62,3 +62,5 @@ splashSplashScreen.scale-200.png
 splashSplashScreen.scale-400.png
 AboutAssets.txt
 Bread_onnx_optimized.onnx
+Bread_onnx_optimized_dynamic_quantized.onnx
+Bread_onnx_test.onnx

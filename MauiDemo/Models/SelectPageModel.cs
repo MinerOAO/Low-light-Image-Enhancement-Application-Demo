@@ -67,7 +67,10 @@ namespace MauiDemo.Models
             try 
             {
                 var ort = await OnnxRuntimeWrapper.LoadModel("Bread_onnx_optimized.onnx");
-                ort.StartInference(ref _image, gamma, strength, quality);
+                // 量化时，注意onnxruntime的python版本与C# nupackage版本中opset算子版本
+                // x86-64 with VNNI, GPU with Tensor Core int8 support and ARM with dot-product instructions can get better performance in general.
+                //var ort = await OnnxRuntimeWrapper.LoadModel("Bread_onnx_optimized_dynamic_quantized.onnx");
+                ort.StartInference(ref _image, gamma, strength, quality, InferenceType.Entire);
             }
             catch (Exception ex) 
             {
