@@ -18,17 +18,23 @@
         <VerticalStackLayout
             HorizontalOptions="Fill">
             <HorizontalStackLayout>
-                <CheckBox
-                x:Name="SplitCheckBox"
-                IsChecked="true" 
-                CheckedChanged="OnSplitCheckBoxChanged">
-
-                </CheckBox>
-                <Label 
-                Text="FlexLayout in Action"
-                FontSize="18"
-                HorizontalTextAlignment="Center"
-                VerticalTextAlignment="Center"/>
+                <Picker 
+                    x:Name="typePicker"
+                    Title="Select a inference type">
+                </Picker>
+                <HorizontalStackLayout>
+                    <CheckBox
+                        x:Name="DownSampleCheckBox"
+                        IsChecked="true" 
+                        CheckedChanged="OnDownSampleCheckBoxChanged"
+                        VerticalOptions="EndAndExpand">
+                    </CheckBox>
+                    <Label 
+                        Text="Downsample"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"/>
+                </HorizontalStackLayout>
             </HorizontalStackLayout>
             <Label 
                 x:Name="GammaSliderValueDisplay"
@@ -47,6 +53,15 @@
             <Slider 
                 x:Name="StrengthSlider"
                 Maximum="1"
+                ValueChanged="OnSliderValueChanged" />
+            <Label 
+                x:Name="QualitySliderValueDisplay"
+                Text="{Binding Source={x:Reference QualitySlider},
+                            Path=Value,
+                            StringFormat='Image Quality {0:F0}'}"/>
+            <Slider 
+                x:Name="QualitySlider"
+                Maximum="100"
                 ValueChanged="OnSliderValueChanged" />
         </VerticalStackLayout>
         <Button

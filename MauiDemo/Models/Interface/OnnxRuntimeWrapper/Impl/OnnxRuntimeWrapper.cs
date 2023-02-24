@@ -38,34 +38,32 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
             });
             return input_tensor;
         }
-        private async partial Task TensorResultToJPEG(int sessionID)
+        private async partial Task WriteTensorResultToCanvas(int sessionID, Image<Rgb24> RGBImage, Rectangle drawArea)
         {
+            //Rectangle坐标系原点位于左下,
             if (outputData.TryGetValue(sessionID, out var data))
             {
                 var imageArray = data.Select(x => (byte)(x * 255.0f)).ToArray();
-                Console.WriteLine($"{imageArray.Length}");
                 //RGBImage.SaveAsJpeg("origin.jpg");
                 //WIP 宽高数据
                 //需要定制修改pytorch模型输出形状进行优化
-                var RGBImage = new Image<Rgb24>(Width, Height);
                 RGBImage.ProcessPixelRows(accessor =>
                 {
-                    for (int y = 0; y < accessor.Height; ++y)
+                    for (int y = drawArea.Top; y < drawArea.Bottom; ++y)
                     {
                         Span<Rgb24> pixelRow = accessor.GetRowSpan(y);
+                        
+                        int stride = Math.Abs(drawArea.Width * drawArea.Height);
 
-                        int factor = accessor.Height * accessor.Width;
-
-                        for (int x = 0; x < accessor.Width; ++x)
+                        for (int x = drawArea.Left; x < drawArea.Right; ++x)
                         {
                             //WIP
                             ref var pixel = ref pixelRow[x];
-                            // 不会越界?
-                            int arrayPointer = accessor.Height * x + y;
+                            // 小画布，减去Left&&Top从0,0开始
+                            int arrayPointer = Math.Abs(drawArea.Height) * (x - drawArea.Left) + (y - drawArea.Top);
                             pixel.R = imageArray[arrayPointer];
-                            pixel.G = imageArray[arrayPointer + factor];
-                            pixel.B = imageArray[arrayPointer + 2 * factor];
-
+                            pixel.G = imageArray[arrayPointer + stride];
+                            pixel.B = imageArray[arrayPointer + 2 * stride];
                         }
                     }
                 });
@@ -79,6 +77,15 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
             }
             else throw new Exception();
         }
+        //private async partial Task SaveToStorage(Image<Rgb24> RGBImage)
+        //{
+        //    string targetFile = System.IO.Path.Combine(FileSystem.Current.AppDataDirectory, $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss-fff}.jpg");
+        //    using FileStream fileStream = System.IO.File.OpenWrite(targetFile);
+        //    await RGBImage.SaveAsJpegAsync(fileStream, new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder()
+        //    {
+        //        Quality = _quality
+        //    });
+        //}
         public partial void StartInference(ref Image<Rgb24> RGBImage, float gamma, float strength, int quality, InferenceType type)
         {
             _width = RGBImage.Width;
@@ -100,71 +107,80 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
                 case InferenceType.Split:
                     {
                         int factor = 2;
-                        //前述步骤保证为偶数
                         int startX = 0; 
                         int startY = 0;
                         int endX = _width / factor;
                         int endY = _height / factor;
-
-                        while(startY < _height)
+                        using (var imageCanvas = new Image<Rgb24>(_width, _height))
                         {
-                            startY = endY + 1;
-                            endY += _height / factor;
-                            while (startX < _width)
+                            while (startY < _height)
                             {
-                                using var cropImage = RGBImage.Clone();
-                                cropImage.Mutate(x => x.Crop(new Rectangle(startX, startY, endX, endY)));
-                                startX = endX + 1;
-                                endX += _width / factor;
+                                while (startX < _width)
+                                {
+                                    var cropRect = new Rectangle(startX, startY, endX - startX, endY - startY);
+                                    using (var cropImage = RGBImage.Clone())
+                                    {
+                                        cropImage.Mutate(x => x.Crop(cropRect));
 
-                                var inputTensor = ToRGBTensor(RGBImage);
+                                        var inputTensor = ToRGBTensor(cropImage);
 
-                                NamedOnnxValue onnxGamma = NamedOnnxValue.CreateFromTensor<float>("gamma", gammaTensor);
-                                NamedOnnxValue onnxStrength = NamedOnnxValue.CreateFromTensor<float>("strength", strengthTensor);
-                                NamedOnnxValue onnxImage = NamedOnnxValue.CreateFromTensor<float>("input_image", inputTensor);
-                                Console.WriteLine("Data Loaded!");
+                                        NamedOnnxValue onnxGamma = NamedOnnxValue.CreateFromTensor<float>("gamma", gammaTensor);
+                                        NamedOnnxValue onnxStrength = NamedOnnxValue.CreateFromTensor<float>("strength", strengthTensor);
+                                        NamedOnnxValue onnxImage = NamedOnnxValue.CreateFromTensor<float>("input_image", inputTensor);
 
-                                //Run(new List<NamedOnnxValue>()
-                                //{
-                                //    onnxImage,
-                                //    onnxGamma,
-                                //    onnxStrength,
-                                //});
+                                        int sessionID = -1;
+                                        Run(new List<NamedOnnxValue>()
+                                        {
+                                            onnxImage,
+                                            onnxGamma,
+                                            onnxStrength,
+                                        }, ref sessionID);
+                                        WriteTensorResultToCanvas(sessionID, imageCanvas, cropRect);
+                                    }
+                                    
+                                    startX = endX;
+                                    endX += _width / factor;
+                                }
+                                startX = 0;
+                                endX = _width / factor;
+                                startY = endY;
+                                endY += _height / factor;
                             }
                         }
-                        return;
+                        break;
                     }
-                case InferenceType.None:
                 case InferenceType.Entire:
                 default:
-                {
-                    //You can create an implicitly-typed array in which
-                    //the type of the array instance is inferred from
-                    //the elements specified in the array initializer.
-                    var inputTensor = ToRGBTensor(RGBImage);
-
-
-                    //Console.WriteLine($"{gamma.Dimensions.ToString()},{gamma.Length}, {gamma.GetValue(0)}");
-                    //Console.WriteLine($"{strength.Dimensions.ToString()},{strength.Length}, {strength.GetValue(0)}");
-                    //Console.WriteLine($"{input_image.Dimensions.ToString()},{input_image.Length}");
-
-                    NamedOnnxValue onnxGamma = NamedOnnxValue.CreateFromTensor<float>("gamma", gammaTensor);
-                    NamedOnnxValue onnxStrength = NamedOnnxValue.CreateFromTensor<float>("strength", strengthTensor);
-                    NamedOnnxValue onnxImage = NamedOnnxValue.CreateFromTensor<float>("input_image", inputTensor);
-                    Console.WriteLine("Data Loaded!");
-
-
-                    int sessionID = -1;
-                    Run(new List<NamedOnnxValue>()
                     {
-                        onnxImage,
-                        onnxGamma,
-                        onnxStrength,
-                    }, ref sessionID);
+                        //You can create an implicitly-typed array in which
+                        //the type of the array instance is inferred from
+                        //the elements specified in the array initializer.
+                        var inputTensor = ToRGBTensor(RGBImage);
 
-                    TensorResultToJPEG(sessionID);
-                    return;
-                }
+
+                        //Console.WriteLine($"{gamma.Dimensions.ToString()},{gamma.Length}, {gamma.GetValue(0)}");
+                        //Console.WriteLine($"{strength.Dimensions.ToString()},{strength.Length}, {strength.GetValue(0)}");
+                        //Console.WriteLine($"{input_image.Dimensions.ToString()},{input_image.Length}");
+
+                        NamedOnnxValue onnxGamma = NamedOnnxValue.CreateFromTensor<float>("gamma", gammaTensor);
+                        NamedOnnxValue onnxStrength = NamedOnnxValue.CreateFromTensor<float>("strength", strengthTensor);
+                        NamedOnnxValue onnxImage = NamedOnnxValue.CreateFromTensor<float>("input_image", inputTensor);
+
+                        int sessionID = -1;
+                        Run(new List<NamedOnnxValue>()
+                        {
+                            onnxImage,
+                            onnxGamma,
+                            onnxStrength,
+                        }, ref sessionID);
+
+                        using (var imageCanvas = new Image<Rgb24>(_width, _height))
+                        {
+                            WriteTensorResultToCanvas(sessionID, imageCanvas, 
+                                new Rectangle(0, 0, _width, _height));
+                        }
+                        break;
+                    }
             }
 
         }

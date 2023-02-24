@@ -1,4 +1,7 @@
 using MauiDemo.Models;
+using MauiDemo.Models.Interface.OnnxRuntimeWrapper;
+using Microsoft.Maui.Controls;
+using System.Globalization;
 
 namespace MauiDemo.Views;
 
@@ -9,13 +12,25 @@ public partial class SelectPage : ContentPage
 	{
 		InitializeComponent();
         model = new SelectPageModel();
+        ValueBinding();
+        
         //AbsoluteLayout
         //https://learn.microsoft.com/en-us/dotnet/maui/user-interface/layouts/absolutelayout?view=net-maui-7.0
         //Define in XAML
         //https://learn.microsoft.com/en-us/dotnet/maui/user-interface/visual-states?view=net-maui-7.0
         //VisualStateManager.GoToState(StackLayout, "");
     }
+    private void ValueBinding()
+    {
+        GammaSlider.SetBinding(Slider.ValueProperty, new Binding("Gamma", BindingMode.TwoWay, source: model));
+        StrengthSlider.SetBinding(Slider.ValueProperty, new Binding(path: "Strength", mode: BindingMode.TwoWay, source: model));
+        QualitySlider.SetBinding(Slider.ValueProperty, new Binding("Quality", BindingMode.TwoWay, source: model));
 
+        typePicker.ItemsSource = Enum.GetNames(
+            typeof(MauiDemo.Models.Interface.OnnxRuntimeWrapper.InferenceType)).ToList();
+        typePicker.SetBinding(
+            Picker.SelectedIndexProperty, new Binding(path: "Type", mode: BindingMode.TwoWay, converter: new EnumToIntConverter(), source: model));
+    }
     private async void OnPhotoClicked(object sender, EventArgs e)
     {
         var result = await model.PickImage();
@@ -23,7 +38,7 @@ public partial class SelectPage : ContentPage
         {
             SelectedImage.Source = model.LoadToDisplay(await result.OpenReadAsync());
             await model.LoadToRgb24(await result.OpenReadAsync());
-            model.Inference(0.6f, 0.01f, 100);
+            model.Inference();
         }
         
 
@@ -36,24 +51,29 @@ public partial class SelectPage : ContentPage
 
         SemanticScreenReader.Announce(PhotoBtn.Text);
     }
-    private void OnSelectClicked(object sender, EventArgs e)
+    private async void OnSelectClicked(object sender, EventArgs e)
     {
-        model.TestCounter++;
-
-        if (model.TestCounter == 1)
-            SelectBtn.Text = $"Clicked {model.TestCounter} time";
-        else
-            SelectBtn.Text = $"Clicked {model.TestCounter} times";
-
-        SemanticScreenReader.Announce(SelectBtn.Text);
+        await Navigation.PushAsync(new ResultPage());
     }
 
-    private void OnSplitCheckBoxChanged(object sender, CheckedChangedEventArgs e)
+    private void OnDownSampleCheckBoxChanged(object sender, CheckedChangedEventArgs e)
     {
 
     }
     private void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
     {
 
+    }
+}
+public class EnumToIntConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return (int)value;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        return (InferenceType)value;
     }
 }

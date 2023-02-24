@@ -8,7 +8,6 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
 {
     public enum InferenceType
     {
-        None,
         Entire,
         Split
     }
@@ -35,7 +34,7 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
         //returns void
         partial void Run(List<NamedOnnxValue> inputData, ref int sessionID);
         private partial DenseTensor<float> ToRGBTensor(Image<Rgb24> RGBImage);
-        private partial Task TensorResultToJPEG(int sessionID);
+        private partial Task WriteTensorResultToCanvas(int sessionID, Image<Rgb24> RGBImage, Rectangle drawArea);
 
         public async static Task<OnnxRuntimeWrapper> LoadModel(string modelName)
         {

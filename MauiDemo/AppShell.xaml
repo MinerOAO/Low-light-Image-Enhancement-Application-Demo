@@ -14,10 +14,6 @@
             Title="Select"
             ContentTemplate="{DataTemplate local:SelectPage}"/>
         <ShellContent
-            Title="Result"
-            ContentTemplate="{DataTemplate local:ResultPage}">
-        </ShellContent>
-        <ShellContent
             Title="About"
             ContentTemplate="{DataTemplate local:AboutPage}"/>
     </TabBar>

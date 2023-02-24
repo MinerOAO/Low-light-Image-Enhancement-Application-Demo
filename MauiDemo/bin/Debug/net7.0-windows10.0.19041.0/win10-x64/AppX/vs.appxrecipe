@@ -29,13 +29,13 @@
     <AppXManifest Include="F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2023-02-20T08:55:49.551</Modified>
+      <Modified>2023-02-24T12:13:29.479</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2023-02-20T08:55:49.077</Modified>
+      <Modified>2023-02-24T12:13:28.998</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\MauiDemo.runtimeconfig.json">
       <PackagePath>MauiDemo.runtimeconfig.json</PackagePath>
@@ -43,11 +43,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\MauiDemo.dll">
       <PackagePath>MauiDemo.dll</PackagePath>
-      <Modified>2023-02-20T08:55:47.864</Modified>
+      <Modified>2023-02-24T12:13:27.843</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\coding\MAUI\MAUIDemo\MauiDemo\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>MauiDemo.exe</PackagePath>
-      <Modified>2023-02-20T08:55:47.876</Modified>
+      <Modified>2023-02-24T12:13:27.853</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\MinerOAO\.nuget\packages\microsoft.ai.directml\1.9.1\bin\x64-win\DirectML.dll">
       <PackagePath>DirectML.dll</PackagePath>
@@ -943,7 +943,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\coding\MAUI\MAUIDemo\MauiDemo\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\MauiDemo.deps.json">
       <PackagePath>MauiDemo.deps.json</PackagePath>
-      <Modified>2023-02-20T08:55:49.355</Modified>
+      <Modified>2023-02-24T12:13:29.306</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files\dotnet\packs\Microsoft.Maui.Controls.Ref.win\7.0.59\ref\net7.0-windows10.0.19041\Microsoft.Maui.Controls.Compatibility.pri">
       <PackagePath>Microsoft.Maui.Controls.Compatibility.pri</PackagePath>
@@ -961,17 +961,21 @@
       <PackagePath>AboutAssets.txt</PackagePath>
       <Modified>2023-02-19T08:25:29.079</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="F:\coding\MAUI\MAUIDemo\MauiDemo\Resources\Raw\Bread_onnx_all_halfres_optimized.onnx">
+      <PackagePath>Bread_onnx_all_halfres_optimized.onnx</PackagePath>
+      <Modified>2023-02-22T12:56:54.618</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="F:\coding\MAUI\MAUIDemo\MauiDemo\Resources\Raw\Bread_onnx_all_halfres_test.onnx">
+      <PackagePath>Bread_onnx_all_halfres_test.onnx</PackagePath>
+      <Modified>2023-02-22T12:57:38.616</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="F:\coding\MAUI\MAUIDemo\MauiDemo\Resources\Raw\Bread_onnx_optimized.onnx">
       <PackagePath>Bread_onnx_optimized.onnx</PackagePath>
-      <Modified>2023-02-20T07:26:03.388</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="F:\coding\MAUI\MAUIDemo\MauiDemo\Resources\Raw\Bread_onnx_optimized_dynamic_quantized.onnx">
-      <PackagePath>Bread_onnx_optimized_dynamic_quantized.onnx</PackagePath>
-      <Modified>2023-02-20T07:25:12.407</Modified>
+      <Modified>2023-02-22T12:50:36.459</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\coding\MAUI\MAUIDemo\MauiDemo\Resources\Raw\Bread_onnx_test.onnx">
       <PackagePath>Bread_onnx_test.onnx</PackagePath>
-      <Modified>2023-02-20T07:24:51.699</Modified>
+      <Modified>2023-02-22T12:51:19.653</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="F:\coding\MAUI\MAUIDemo\MauiDemo\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\resizetizer\sp\splashSplashScreen.scale-100.png">
       <PackagePath>splashSplashScreen.scale-100.png</PackagePath>

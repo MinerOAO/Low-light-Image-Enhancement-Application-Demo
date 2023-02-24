@@ -8,7 +8,7 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
         {
             var options = new SessionOptions();
             options.AddSessionConfigEntry("enable_profiling", "true");
-            options.AppendExecutionProvider_CPU();
+            //options.AppendExecutionProvider_CPU();
 
             //Memory Consumption ?
 
@@ -35,7 +35,7 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
             //options.AppendExecutionProvider_DML();
 
             //options.EnableMemoryPattern = false;
-            options.ExecutionMode = ExecutionMode.ORT_SEQUENTIAL;
+            //options.ExecutionMode = ExecutionMode.ORT_SEQUENTIAL;
             
             try
             {
