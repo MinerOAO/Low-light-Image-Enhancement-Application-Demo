@@ -36,7 +36,8 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
 
             //options.EnableMemoryPattern = false;
             //options.ExecutionMode = ExecutionMode.ORT_SEQUENTIAL;
-            
+            options.GraphOptimizationLevel = GraphOptimizationLevel.ORT_ENABLE_ALL;
+
             try
             {
                 //Must: model(binary or string path)

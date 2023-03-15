@@ -22,6 +22,9 @@ namespace MauiDemo.Models
                     _externalCropFactor = value;
             } }
 
+        private bool _isDownSample = false;
+        public bool IsDownSample { get { return _isDownSample; } set { _isDownSample = value; } }
+
 
         private float _gamma = 1.0f;
         public float Gamma { get { return _gamma; } set { _gamma = value; } }
@@ -76,6 +79,11 @@ namespace MauiDemo.Models
             var tuple = await SixLabors.ImageSharp.Image.LoadWithFormatAsync(stream);
             _image = tuple.Image.CloneAs<Rgb24>();
 
+            if(_isDownSample) 
+            {
+                _image.Mutate(x => x.Resize(_image.Width / 2, _image.Height / 2));
+            }
+
             int actualFactor = _internalCropFactor * _externalCropFactor;
             int actualWidth = _image.Width - _image.Width % actualFactor;
             int actualHeight = _image.Height - _image.Height % actualFactor;
@@ -91,11 +99,11 @@ namespace MauiDemo.Models
             {          
                 using (_image)
                 {
-                    var ort = await OnnxRuntimeWrapper.LoadModel("Bread_onnx_all_halfres_optimized.onnx");
+                    var ort = await OnnxRuntimeWrapper.LoadModel("Bread_onnx_all_halfres_test.onnx");
                     // 量化时，注意onnxruntime的python版本与C# nupackage版本中opset算子版本
                     // x86-64 with VNNI, GPU with Tensor Core int8 support and ARM with dot-product instructions can get better performance in general.
                     //var ort = await OnnxRuntimeWrapper.LoadModel("Bread_onnx_optimized_dynamic_quantized.onnx");
-                    ort.StartInference(ref _image, _gamma, _strength, _quality, _type);
+                    await ort.StartInference(_image, _gamma, _strength, _quality, _type);
                 }
             }
             catch (Exception ex) 

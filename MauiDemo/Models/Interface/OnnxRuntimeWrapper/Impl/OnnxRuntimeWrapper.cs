@@ -1,9 +1,9 @@
 ﻿using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
 using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
+using System.Diagnostics;
 
 namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
 {
@@ -15,7 +15,7 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
             _model = model;
         }
         //Global Implement
-        private partial DenseTensor<float> ToRGBTensor(Image<Rgb24> RGBImage)
+        private DenseTensor<float> ToRGBTensor(Image<Rgb24> RGBImage)
         {
             //WIP
             var input_tensor = new DenseTensor<float>(new[] { 1, 3, RGBImage.Width, RGBImage.Height });
@@ -23,7 +23,6 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
             //https://docs.sixlabors.com/articles/imagesharp/pixelbuffers.html
             RGBImage.ProcessPixelRows(accessor =>
             {
-                Console.WriteLine($"{accessor.Width}, {accessor.Height}");
                 for (int y = 0; y < accessor.Height; ++y)
                 {
                     Span<Rgb24> pixelRow = accessor.GetRowSpan(y);
@@ -38,7 +37,7 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
             });
             return input_tensor;
         }
-        private async partial Task WriteTensorResultToCanvas(int sessionID, Image<Rgb24> RGBImage, Rectangle drawArea)
+        private void WriteTensorResultToCanvas(int sessionID, Image<Rgb24> RGBImage, Rectangle drawArea)
         {
             //Rectangle坐标系原点位于左下,
             if (outputData.TryGetValue(sessionID, out var data))
@@ -67,7 +66,13 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
                         }
                     }
                 });
-
+            }
+            else throw new Exception();
+        }
+        private async Task SaveCanvasToImageFile(Image<Rgb24> RGBImage)
+        {
+            try
+            {
                 string targetFile = System.IO.Path.Combine(FileSystem.Current.AppDataDirectory, $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss-fff}.jpg");
                 using FileStream fileStream = System.IO.File.OpenWrite(targetFile);
                 await RGBImage.SaveAsJpegAsync(fileStream, new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder()
@@ -75,18 +80,13 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
                     Quality = _quality
                 });
             }
-            else throw new Exception();
+            catch(Exception e) 
+            {
+                Console.WriteLine(e.ToString());
+                Debug.WriteLine(e);
+            }
         }
-        //private async partial Task SaveToStorage(Image<Rgb24> RGBImage)
-        //{
-        //    string targetFile = System.IO.Path.Combine(FileSystem.Current.AppDataDirectory, $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss-fff}.jpg");
-        //    using FileStream fileStream = System.IO.File.OpenWrite(targetFile);
-        //    await RGBImage.SaveAsJpegAsync(fileStream, new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder()
-        //    {
-        //        Quality = _quality
-        //    });
-        //}
-        public partial void StartInference(ref Image<Rgb24> RGBImage, float gamma, float strength, int quality, InferenceType type)
+        public async partial Task StartInference(Image<Rgb24> RGBImage, float gamma, float strength, int quality, InferenceType type)
         {
             _width = RGBImage.Width;
             _height = RGBImage.Height;
@@ -146,6 +146,7 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
                                 startY = endY;
                                 endY += _height / factor;
                             }
+                            await SaveCanvasToImageFile(imageCanvas);
                         }
                         break;
                     }
@@ -178,6 +179,7 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
                         {
                             WriteTensorResultToCanvas(sessionID, imageCanvas, 
                                 new Rectangle(0, 0, _width, _height));
+                            await SaveCanvasToImageFile(imageCanvas);
                         }
                         break;
                     }

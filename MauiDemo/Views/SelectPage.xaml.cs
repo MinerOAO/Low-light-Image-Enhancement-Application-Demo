@@ -1,6 +1,7 @@
 using MauiDemo.Models;
 using MauiDemo.Models.Interface.OnnxRuntimeWrapper;
 using Microsoft.Maui.Controls;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace MauiDemo.Views;
@@ -30,8 +31,10 @@ public partial class SelectPage : ContentPage
             typeof(MauiDemo.Models.Interface.OnnxRuntimeWrapper.InferenceType)).ToList();
         typePicker.SetBinding(
             Picker.SelectedIndexProperty, new Binding(path: "Type", mode: BindingMode.TwoWay, converter: new EnumToIntConverter(), source: model));
+
+        DownSampleCheckBox.SetBinding(CheckBox.IsCheckedProperty, new Binding(path: "IsDownSample", mode: BindingMode.TwoWay, source: model));
     }
-    private async void OnPhotoClicked(object sender, EventArgs e)
+    private async void OnSelectClicked(object sender, EventArgs e)
     {
         var result = await model.PickImage();
         if(result != null) 
@@ -51,7 +54,7 @@ public partial class SelectPage : ContentPage
 
         SemanticScreenReader.Announce(PhotoBtn.Text);
     }
-    private async void OnSelectClicked(object sender, EventArgs e)
+    private async void OnPhotoClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new ResultPage());
     }
