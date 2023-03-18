@@ -27,10 +27,10 @@
                 MaximumWidthRequest="200"
            />
         <Button
-                x:Name="CompleteBtn"
-                Text="Complete"
-                SemanticProperties.Hint="Complete process"
-                Clicked="OnCompleteClicked"
+                x:Name="SaveBtn"
+                Text="Save"
+                SemanticProperties.Hint="Save to somewhere"
+                Clicked="OnSaveClicked"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 MinimumWidthRequest="100"

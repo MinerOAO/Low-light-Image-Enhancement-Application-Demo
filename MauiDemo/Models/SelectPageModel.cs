@@ -56,6 +56,7 @@ namespace MauiDemo.Models
 
         private const byte _internalCropFactor = 2;
         private Image<Rgb24> _image;
+        public string originalImgName;
         FilePickerFileType customFileType = new FilePickerFileType(
                 new Dictionary<DevicePlatform, IEnumerable<string>>
                 {
@@ -89,19 +90,26 @@ namespace MauiDemo.Models
             }
             return null;
         }
-        public async Task LoadToRgb24(Stream stream)
+        public async Task LoadToRgb24(Stream stream, string fileName)
         {
             //load image
+            if (fileName != null)
+                originalImgName = fileName;
+            else
+                originalImgName = null;
+
             if (stream == null)
             {
                 _image = null;
                 StateV2.ModelState = InternalState.Idle;
                 return;
             }
-
-            var tuple = await SixLabors.ImageSharp.Image.LoadWithFormatAsync(stream);
-            _image = tuple.Image.CloneAs<Rgb24>();
-            StateV2.ModelState = InternalState.ImageLoaded;
+            else
+            {
+                var tuple = await SixLabors.ImageSharp.Image.LoadWithFormatAsync(stream);
+                _image = tuple.Image.CloneAs<Rgb24>();
+                StateV2.ModelState = InternalState.ImageLoaded;
+            }
         }
         public ImageSource LoadToDisplay(Stream stream)
         {
@@ -147,7 +155,7 @@ namespace MauiDemo.Models
                 StateV2.ModelState = InternalState.Idle;
                 return resultName;
             }
-            StateV2.ModelState = InternalState.Idle;
+            StateV2.ModelState = InternalState.ImageLoaded;
             return resultName;
         }
     }

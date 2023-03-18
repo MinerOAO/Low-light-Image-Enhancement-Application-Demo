@@ -75,13 +75,13 @@ public partial class SelectPage : ContentPage
         if(result != null) 
         {
             SelectedImage.Source = model.LoadToDisplay(await result.OpenReadAsync());
-            await model.LoadToRgb24(await result.OpenReadAsync());
+            await model.LoadToRgb24(await result.OpenReadAsync(), result.FileName);
             InferenceBtn.IsEnabled = true;
         }
         else
         {
             SelectedImage.Source = ImageSource.FromFile(null);
-            await model.LoadToRgb24(null);
+            await model.LoadToRgb24(null, null);
             InferenceBtn.IsEnabled = false;
         }
 
@@ -103,7 +103,7 @@ public partial class SelectPage : ContentPage
             if(popup.IsClosed != true)
                 popup.Close();
             if(result != null)
-                await Navigation.PushAsync(new ResultPage(result));
+                await Navigation.PushAsync(new ResultPage(model.originalImgName, result));
         }
 
     }
