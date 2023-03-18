@@ -69,11 +69,12 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
             }
             else throw new Exception();
         }
-        private async Task SaveCanvasToImageFile(Image<Rgb24> RGBImage)
+        private async Task<string> SaveCanvasToImageFile(Image<Rgb24> RGBImage)
         {
+            string imgName = $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss-fff}.jpg";
             try
             {
-                string targetFile = System.IO.Path.Combine(FileSystem.Current.AppDataDirectory, $"{DateTime.Now:yyyy-MM-dd_HH-mm-ss-fff}.jpg");
+                string targetFile = System.IO.Path.Combine(FileSystem.Current.CacheDirectory, imgName);
                 using FileStream fileStream = System.IO.File.OpenWrite(targetFile);
                 await RGBImage.SaveAsJpegAsync(fileStream, new SixLabors.ImageSharp.Formats.Jpeg.JpegEncoder()
                 {
@@ -85,9 +86,21 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
                 Console.WriteLine(e.ToString());
                 Debug.WriteLine(e);
             }
+            return imgName;
         }
-        public async partial Task StartInference(Image<Rgb24> RGBImage, float gamma, float strength, int quality, InferenceType type)
+        public async partial Task<string> StartInference(Image<Rgb24> RGBImage, float gamma, float strength, int quality, CancellationToken token, InferenceType type)
         {
+            token.Register(() =>
+            {
+                if(_session != null)
+                {
+                    _session.Dispose();
+                }
+                return;
+            });
+
+            string resultImgName = null;
+
             _width = RGBImage.Width;
             _height = RGBImage.Height;
             _quality = quality;
@@ -146,7 +159,7 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
                                 startY = endY;
                                 endY += _height / factor;
                             }
-                            await SaveCanvasToImageFile(imageCanvas);
+                            resultImgName = await SaveCanvasToImageFile(imageCanvas);
                         }
                         break;
                     }
@@ -179,12 +192,12 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
                         {
                             WriteTensorResultToCanvas(sessionID, imageCanvas, 
                                 new Rectangle(0, 0, _width, _height));
-                            await SaveCanvasToImageFile(imageCanvas);
+                            resultImgName = await SaveCanvasToImageFile(imageCanvas);
                         }
                         break;
                     }
             }
-
+            return resultImgName;
         }
     }
 }

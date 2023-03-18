@@ -12,11 +12,11 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
             options.GraphOptimizationLevel = GraphOptimizationLevel.ORT_ENABLE_ALL;
             try
             {
-                using (var _ort = new InferenceSession(Model, options))
+                using (_session = new InferenceSession(Model, options))
                 {
-                    using (var result = _ort.Run(inputData))
+                    using (var result = _session.Run(inputData))
                     {
-                        sessionID = _ort.GetHashCode();
+                        sessionID = _session.GetHashCode();
                         outputData.Add(sessionID, result.First().AsEnumerable<float>().ToList());
                     }
                 }

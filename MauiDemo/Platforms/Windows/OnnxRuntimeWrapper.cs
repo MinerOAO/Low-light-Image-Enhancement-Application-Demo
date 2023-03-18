@@ -43,12 +43,12 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
                 //Must: model(binary or string path)
                 //Optional: session && weights
                 //DIRECTML Package issue : https://github.com/microsoft/onnxruntime/issues/13429
-                using (var _ort = new InferenceSession(Model, options))
+                using (_session = new InferenceSession(Model, options))
                 {
                     // WIP:
-                    using (var result = _ort.Run(inputData))
+                    using (var result = _session.Run(inputData))
                     {
-                        sessionID = _ort.GetHashCode();
+                        sessionID = _session.GetHashCode();
                         outputData.Add(sessionID, result.First().AsEnumerable<float>().ToList());
                     }
                     //result.AsEnumerable<float>().ToArray()

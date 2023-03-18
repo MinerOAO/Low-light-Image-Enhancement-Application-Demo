@@ -65,6 +65,18 @@
                 ValueChanged="OnSliderValueChanged" />
         </VerticalStackLayout>
         <Button
+                x:Name="InferenceBtn"
+                Text="Start!"
+                SemanticProperties.Hint="Start Inference"
+                Clicked="OnInferenceClicked"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                MinimumWidthRequest="100"
+                WidthRequest="150"
+                MaximumWidthRequest="200"
+                IsEnabled="False"
+                />
+        <Button
                 x:Name="SelectBtn"
                 Text="Select"
                 SemanticProperties.Hint="Select image from device storage"

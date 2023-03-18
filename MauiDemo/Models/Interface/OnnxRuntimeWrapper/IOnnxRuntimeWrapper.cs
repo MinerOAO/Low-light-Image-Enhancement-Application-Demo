@@ -26,8 +26,10 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
         private readonly byte[] _model;
         public byte[] Model { get { return _model; } private set { } }
 
+        private InferenceSession _session = null;
+
         private Dictionary<int, IEnumerable<float>> outputData = new Dictionary<int, IEnumerable<float>>();
-        public partial Task StartInference(Image<Rgb24> RGBImage, float gamma, float strength, int quality, InferenceType type = InferenceType.Entire);
+        public partial Task<string> StartInference(Image<Rgb24> RGBImage, float gamma, float strength, int quality, CancellationToken token, InferenceType type = InferenceType.Entire);
         //Multi-platform Method Restricts
         //partial methods to be without access modifiers
         //returns void

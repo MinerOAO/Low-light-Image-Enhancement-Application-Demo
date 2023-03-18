@@ -2,15 +2,32 @@
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace MauiDemo.Models
 {
-    class SelectPageModel
+    public class SelectPageModel
     {
         public SelectPageModel()
         {
+            StateV2 = new ModelStateV2();
+            _type = InferenceType.Entire;
+
+            _gamma = 1.0f;
+            _strength = 0.01f;
+            _quality = 100;
+        }
+        ~SelectPageModel()
+        {
 
         }
+
+        public ModelStateV2 StateV2;
+
+        public CancellationTokenSource cts;
+
         private int _testCounter = 0;
         public int TestCounter { get { return _testCounter; } set { _testCounter = value; } }
 
@@ -25,17 +42,16 @@ namespace MauiDemo.Models
         private bool _isDownSample = false;
         public bool IsDownSample { get { return _isDownSample; } set { _isDownSample = value; } }
 
-
-        private float _gamma = 1.0f;
+        private float _gamma;
         public float Gamma { get { return _gamma; } set { _gamma = value; } }
 
-        private float _strength = 0.01f;
+        private float _strength;
         public float Strength { get { return _strength; } set { _strength = value; } }
 
-        private byte _quality = 100;
+        private byte _quality;
         public byte Quality { get { return _quality; } set { _quality = value; } }
 
-        private InferenceType _type = InferenceType.Entire;
+        private InferenceType _type;
         public InferenceType Type { get { return _type; }  set { _type = value; } }
 
         private const byte _internalCropFactor = 2;
@@ -76,41 +92,107 @@ namespace MauiDemo.Models
         public async Task LoadToRgb24(Stream stream)
         {
             //load image
-            var tuple = await SixLabors.ImageSharp.Image.LoadWithFormatAsync(stream);
-            _image = tuple.Image.CloneAs<Rgb24>();
-
-            if(_isDownSample) 
+            if (stream == null)
             {
-                _image.Mutate(x => x.Resize(_image.Width / 2, _image.Height / 2));
+                _image = null;
+                StateV2.ModelState = InternalState.Idle;
+                return;
             }
 
-            int actualFactor = _internalCropFactor * _externalCropFactor;
-            int actualWidth = _image.Width - _image.Width % actualFactor;
-            int actualHeight = _image.Height - _image.Height % actualFactor;
-            _image.Mutate(x => x.Crop(actualWidth, actualHeight));
+            var tuple = await SixLabors.ImageSharp.Image.LoadWithFormatAsync(stream);
+            _image = tuple.Image.CloneAs<Rgb24>();
+            StateV2.ModelState = InternalState.ImageLoaded;
         }
         public ImageSource LoadToDisplay(Stream stream)
         {
             return ImageSource.FromStream(() => stream);
         }
-        public async Task Inference()
+        private Image<Rgb24> FitImage()
         {
+            var image = _image.CloneAs<Rgb24>();
+            if (_isDownSample)
+            {
+                image.Mutate(x => x.Resize(_image.Width / 2, _image.Height / 2));
+            }
+            int actualFactor = _internalCropFactor * _externalCropFactor;
+            int actualWidth = image.Width - image.Width % actualFactor;
+            int actualHeight = image.Height - image.Height % actualFactor;
+            image.Mutate(x => x.Crop(actualWidth, actualHeight));
+            return image;
+        }
+        public async Task<string> Inference()
+        {
+            if (StateV2.ModelState != InternalState.ImageLoaded)
+                return null;
+            StateV2.ModelState = InternalState.Inferencing;
+            string resultName = null;
+
+            cts = new CancellationTokenSource();
+            var token = cts.Token;
             try 
-            {          
-                using (_image)
+            {
+                await Task.Run(async () =>
                 {
-                    var ort = await OnnxRuntimeWrapper.LoadModel("Bread_onnx_all_halfres_test.onnx");
+                    var fittImage = FitImage();
+                    var ortWrapper = await OnnxRuntimeWrapper.LoadModel("Bread_onnx_all_halfres_test.onnx");
                     // 量化时，注意onnxruntime的python版本与C# nupackage版本中opset算子版本
                     // x86-64 with VNNI, GPU with Tensor Core int8 support and ARM with dot-product instructions can get better performance in general.
                     //var ort = await OnnxRuntimeWrapper.LoadModel("Bread_onnx_optimized_dynamic_quantized.onnx");
-                    await ort.StartInference(_image, _gamma, _strength, _quality, _type);
-                }
+                    resultName = await ortWrapper.StartInference(fittImage, _gamma, _strength, _quality, token, _type);
+                }, token);
             }
             catch (Exception ex) 
             {
                 Console.WriteLine(ex.Message);
+                StateV2.ModelState = InternalState.Idle;
+                return resultName;
+            }
+            StateV2.ModelState = InternalState.Idle;
+            return resultName;
+        }
+    }
+    public enum InternalState
+    {
+        Idle,
+        ImageLoaded,
+        Inferencing
+    }
+    public class ModelStateV2 : INotifyPropertyChanged
+    {
+        // These fields hold the values for the public properties.  
+        private InternalState _state;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // This method is called by the Set accessor of each property.  
+        // The CallerMemberName attribute that is applied to the optional propertyName  
+        // parameter causes the property name of the caller to be substituted as an argument.  
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        // The constructor is private to enforce the factory pattern.  
+        public ModelStateV2()
+        {
+            _state = InternalState.Idle;
+        }
+
+        public InternalState ModelState
+        {
+            get
+            {
+                return this._state;
+            }
+
+            set
+            {
+                if (value != this._state)
+                {
+                    this._state = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
     }
-
 }
