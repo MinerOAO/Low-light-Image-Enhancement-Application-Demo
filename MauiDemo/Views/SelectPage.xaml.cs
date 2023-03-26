@@ -9,7 +9,7 @@ namespace MauiDemo.Views;
 
 public partial class SelectPage : ContentPage
 {
-    SelectPageModel model;
+    static SelectPageModel model;
     PopupPage popup = null;
 	public SelectPage()
 	{
@@ -53,13 +53,23 @@ public partial class SelectPage : ContentPage
         {
             case InternalState.Inferencing:
                 {
+                    InferenceBtn.IsEnabled = true;
                     SelectBtn.IsEnabled = false;
                     PhotoBtn.IsEnabled = false;
                     InferenceBtn.Text = "Inferencing...";
                     break;
                 }
-            default:
+            case InternalState.ImageLoaded:
                 {
+                    InferenceBtn.IsEnabled = true;
+                    SelectBtn.IsEnabled = true;
+                    PhotoBtn.IsEnabled = true;
+                    InferenceBtn.Text = "Start!";
+                    break;
+                }
+            case InternalState.Idle:
+                {
+                    InferenceBtn.IsEnabled = false;
                     SelectBtn.IsEnabled = true;
                     PhotoBtn.IsEnabled = true;
                     InferenceBtn.Text = "Start!";
@@ -75,23 +85,28 @@ public partial class SelectPage : ContentPage
         if(result != null) 
         {
             SelectedImage.Source = model.LoadToDisplay(await result.OpenReadAsync());
+
+            popup = new PopupPage(ref model);
+            popup.CanBeDismissedByTappingOutsideOfPopup = false;
+            this.ShowPopup(popup);
+
             await model.LoadToRgb24(await result.OpenReadAsync(), result.FileName);
-            InferenceBtn.IsEnabled = true;
+            if (popup.IsClosed != true)
+                popup.Close();
         }
         else
         {
             SelectedImage.Source = ImageSource.FromFile(null);
             await model.LoadToRgb24(null, null);
-            InferenceBtn.IsEnabled = false;
         }
 
-        model.TestCounter++;
+        //model.TestCounter++;
 
-        if (model.TestCounter == 1)
-            PhotoBtn.Text = $"Clicked {model.TestCounter} time";
-        else
-            PhotoBtn.Text = $"Clicked {model.TestCounter} times";
-        SemanticScreenReader.Announce(PhotoBtn.Text);
+        //if (model.TestCounter == 1)
+        //    PhotoBtn.Text = $"Clicked {model.TestCounter} time";
+        //else
+        //    PhotoBtn.Text = $"Clicked {model.TestCounter} times";
+        //SemanticScreenReader.Announce(PhotoBtn.Text);
     }
     private async void OnInferenceClicked(object sender, EventArgs e)
     {

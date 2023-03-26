@@ -92,6 +92,7 @@ namespace MauiDemo.Models
         }
         public async Task LoadToRgb24(Stream stream, string fileName)
         {
+            StateV2.ModelState = InternalState.Idle;
             //load image
             if (fileName != null)
                 originalImgName = fileName;
@@ -106,8 +107,13 @@ namespace MauiDemo.Models
             }
             else
             {
-                var tuple = await SixLabors.ImageSharp.Image.LoadWithFormatAsync(stream);
-                _image = tuple.Image.CloneAs<Rgb24>();
+                //ImageSharp needs to pre-seed generics to
+                //avoid "Attempting to JIT compile method... while running in aot-only mode."
+                //https://github.com/dotnet/runtime/issues/71210
+                //https://github.com/dotnet/runtime/issues/52559
+                //LLVM ENABLED?
+                var image = await SixLabors.ImageSharp.Image.LoadAsync(stream);
+                _image = image.CloneAs<Rgb24>();
                 StateV2.ModelState = InternalState.ImageLoaded;
             }
         }
@@ -135,19 +141,17 @@ namespace MauiDemo.Models
             StateV2.ModelState = InternalState.Inferencing;
             string resultName = null;
 
-            cts = new CancellationTokenSource();
-            var token = cts.Token;
             try 
             {
                 await Task.Run(async () =>
                 {
                     var fittImage = FitImage();
-                    var ortWrapper = await OnnxRuntimeWrapper.LoadModel("Bread_onnx_all_halfres_test.onnx");
+                    var ortWrapper = await OnnxRuntimeWrapper.LoadModel("Bread_onnx_fullres_test.onnx");
                     // 量化时，注意onnxruntime的python版本与C# nupackage版本中opset算子版本
                     // x86-64 with VNNI, GPU with Tensor Core int8 support and ARM with dot-product instructions can get better performance in general.
                     //var ort = await OnnxRuntimeWrapper.LoadModel("Bread_onnx_optimized_dynamic_quantized.onnx");
-                    resultName = await ortWrapper.StartInference(fittImage, _gamma, _strength, _quality, token, _type);
-                }, token);
+                    resultName = await ortWrapper.StartInference(fittImage, _gamma, _strength, _quality, _type);
+                });
             }
             catch (Exception ex) 
             {

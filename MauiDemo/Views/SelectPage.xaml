@@ -53,8 +53,8 @@
                             StringFormat='Denoise Strength {0:F2}'}"/>
             <Slider 
                 x:Name="StrengthSlider"
-                Maximum="0.3"
-                Minimum="0.01"
+                Maximum="0.15"
+                Minimum="0.03"
                 ValueChanged="OnSliderValueChanged" />
             <Label 
                 x:Name="QualitySliderValueDisplay"

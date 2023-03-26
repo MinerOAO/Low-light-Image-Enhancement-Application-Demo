@@ -88,17 +88,8 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
             }
             return imgName;
         }
-        public async partial Task<string> StartInference(Image<Rgb24> RGBImage, float gamma, float strength, int quality, CancellationToken token, InferenceType type)
+        public async partial Task<string> StartInference(Image<Rgb24> RGBImage, float gamma, float strength, int quality, InferenceType type)
         {
-            token.Register(() =>
-            {
-                if(_session != null)
-                {
-                    _session.Dispose();
-                }
-                return;
-            });
-
             string resultImgName = null;
 
             _width = RGBImage.Width;

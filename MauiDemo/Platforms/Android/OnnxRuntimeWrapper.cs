@@ -7,8 +7,8 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
         partial void Run(List<NamedOnnxValue> inputData, ref int sessionID)
         {
             var options = new SessionOptions();
-            options.AddSessionConfigEntry("enable_profiling", "true");
-            //options.AppendExecutionProvider_Nnapi();
+            //options.AddSessionConfigEntry("enable_profiling", "true");
+            options.AppendExecutionProvider_Nnapi();
             options.GraphOptimizationLevel = GraphOptimizationLevel.ORT_ENABLE_ALL;
             try
             {

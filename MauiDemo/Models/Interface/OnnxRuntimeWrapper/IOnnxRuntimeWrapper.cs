@@ -29,7 +29,7 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
         private InferenceSession _session = null;
 
         private Dictionary<int, IEnumerable<float>> outputData = new Dictionary<int, IEnumerable<float>>();
-        public partial Task<string> StartInference(Image<Rgb24> RGBImage, float gamma, float strength, int quality, CancellationToken token, InferenceType type = InferenceType.Entire);
+        public partial Task<string> StartInference(Image<Rgb24> RGBImage, float gamma, float strength, int quality, InferenceType type = InferenceType.Entire);
         //Multi-platform Method Restricts
         //partial methods to be without access modifiers
         //returns void

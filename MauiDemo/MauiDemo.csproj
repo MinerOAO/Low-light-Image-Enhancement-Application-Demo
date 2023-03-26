@@ -52,8 +52,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Raw\.onnx" />
-	  <None Remove="Resources\Raw\Bread_onnx_all_halfres_optimized.onnx" />
-	  <None Remove="Resources\Raw\Bread_onnx_all_halfres_test.onnx" />
+	  <None Remove="Resources\Raw\Bread_onnx_fullres_test.onnx" />
 	</ItemGroup>
 
 	<ItemGroup>
