@@ -8,9 +8,9 @@ using System.Net.WebSockets;
 
 public partial class PopupPage : Popup
 {
-	readonly SelectPageModel _model = null;
+	readonly PickPageModel _model = null;
     public bool IsClosed = false;
-    public PopupPage(ref SelectPageModel model)
+    public PopupPage(ref PickPageModel model)
 	{
 		_model = model;
         this.Closed += OnPopupPageClosed;

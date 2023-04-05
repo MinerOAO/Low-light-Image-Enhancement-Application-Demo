@@ -8,11 +8,8 @@
 
     <TabBar>
         <ShellContent
-            Title="Notes"
-            ContentTemplate="{DataTemplate local:MainPage}"/>
-        <ShellContent
-            Title="Select"
-            ContentTemplate="{DataTemplate local:SelectPage}"/>
+            Title="Pick"
+            ContentTemplate="{DataTemplate local:PickPage}"/>
         <ShellContent
             Title="About"
             ContentTemplate="{DataTemplate local:AboutPage}"/>

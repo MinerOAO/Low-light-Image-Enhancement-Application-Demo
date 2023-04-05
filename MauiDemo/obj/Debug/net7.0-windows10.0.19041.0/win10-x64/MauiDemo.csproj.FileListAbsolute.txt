@@ -330,10 +330,6 @@ E:\Projects\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\DirectML.pdb
 E:\Projects\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\DirectML.Debug.dll
 E:\Projects\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\DirectML.Debug.pdb
 E:\Projects\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\mscordaccore_amd64_amd64_7.0.323.6910.dll
-F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\DirectML.dll
-F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\DirectML.pdb
-F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\DirectML.Debug.dll
-F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\DirectML.Debug.pdb
 F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\onnxruntime.dll
 F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\MauiDemo.exe
 F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\Platforms\Windows\App.xbf
@@ -557,7 +553,6 @@ F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\
 F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\hostfxr.dll
 F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\hostpolicy.dll
 F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\mscordaccore.dll
-F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\mscordaccore_amd64_amd64_7.0.323.6910.dll
 F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\mscordbi.dll
 F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\mscorrc.dll
 F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\msquic.dll
@@ -662,3 +657,8 @@ F:\coding\MAUI\MAUIDemo\MauiDemo\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\
 F:\coding\MAUI\MAUIDemo\MauiDemo\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\qualifiers.txt.intermediate
 F:\coding\MAUI\MAUIDemo\MauiDemo\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\MultipleQualifiersPerDimensionFound.txt
 F:\coding\MAUI\MAUIDemo\MauiDemo\obj\Debug\net7.0-windows10.0.19041.0\win10-x64\ProjectArchitectures.txt
+F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\onnxruntime_providers_shared.dll
+F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\onnxruntime_providers_shared.lib
+F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\mscordaccore_amd64_amd64_7.0.423.11508.dll
+F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\CommunityToolkit.Maui.dll
+F:\coding\MAUI\MAUIDemo\MauiDemo\bin\Debug\net7.0-windows10.0.19041.0\win10-x64\CommunityToolkit.Maui.Core.dll

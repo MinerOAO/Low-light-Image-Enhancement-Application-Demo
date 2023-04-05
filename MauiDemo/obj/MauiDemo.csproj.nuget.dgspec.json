@@ -61,6 +61,10 @@
         "net7.0-android33.0": {
           "targetAlias": "net7.0-android",
           "dependencies": {
+            "CommunityToolkit.Maui": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[7.0.0, )",
@@ -85,13 +89,13 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
-            "Microsoft.ML.OnnxRuntime.DirectML": {
+            "Microsoft.ML.OnnxRuntime": {
               "target": "Package",
-              "version": "[1.13.1, )"
+              "version": "[1.14.1, )"
             },
             "Microsoft.ML.OnnxRuntime.Managed": {
               "target": "Package",
-              "version": "[1.14.0, )"
+              "version": "[1.14.1, )"
             },
             "Microsoft.Maui.Graphics": {
               "target": "Package",
@@ -186,11 +190,15 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         },
         "net7.0-ios16.1": {
           "targetAlias": "net7.0-ios",
           "dependencies": {
+            "CommunityToolkit.Maui": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[7.0.0, )",
@@ -215,13 +223,13 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
-            "Microsoft.ML.OnnxRuntime.DirectML": {
+            "Microsoft.ML.OnnxRuntime": {
               "target": "Package",
-              "version": "[1.13.1, )"
+              "version": "[1.14.1, )"
             },
             "Microsoft.ML.OnnxRuntime.Managed": {
               "target": "Package",
-              "version": "[1.14.0, )"
+              "version": "[1.14.1, )"
             },
             "Microsoft.Maui.Graphics": {
               "target": "Package",
@@ -261,11 +269,15 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         },
         "net7.0-maccatalyst16.1": {
           "targetAlias": "net7.0-maccatalyst",
           "dependencies": {
+            "CommunityToolkit.Maui": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[7.0.0, )",
@@ -290,13 +302,13 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
-            "Microsoft.ML.OnnxRuntime.DirectML": {
+            "Microsoft.ML.OnnxRuntime": {
               "target": "Package",
-              "version": "[1.13.1, )"
+              "version": "[1.14.1, )"
             },
             "Microsoft.ML.OnnxRuntime.Managed": {
               "target": "Package",
-              "version": "[1.14.0, )"
+              "version": "[1.14.1, )"
             },
             "Microsoft.Maui.Graphics": {
               "target": "Package",
@@ -337,11 +349,15 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         },
         "net7.0-windows10.0.19041": {
           "targetAlias": "net7.0-windows10.0.19041.0",
           "dependencies": {
+            "CommunityToolkit.Maui": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
               "version": "[7.0.0, )",
@@ -366,13 +382,13 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
-            "Microsoft.ML.OnnxRuntime.DirectML": {
+            "Microsoft.ML.OnnxRuntime": {
               "target": "Package",
-              "version": "[1.13.1, )"
+              "version": "[1.14.1, )"
             },
             "Microsoft.ML.OnnxRuntime.Managed": {
               "target": "Package",
-              "version": "[1.14.0, )"
+              "version": "[1.14.1, )"
             },
             "Microsoft.Maui.Graphics": {
               "target": "Package",
@@ -414,11 +430,11 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[7.0.3, 7.0.3]"
+              "version": "[7.0.4, 7.0.4]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[7.0.3, 7.0.3]"
+              "version": "[7.0.4, 7.0.4]"
             },
             {
               "name": "Microsoft.Windows.SDK.NET.Ref",
@@ -426,7 +442,7 @@
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[7.0.3, 7.0.3]"
+              "version": "[7.0.4, 7.0.4]"
             }
           ],
           "frameworkReferences": {
@@ -446,7 +462,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

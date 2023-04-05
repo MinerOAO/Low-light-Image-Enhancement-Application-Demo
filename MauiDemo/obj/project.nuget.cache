@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "EbN+eLsS3dGS6Lf0oRZXFyoRvjABtDIZ36J4G4ybCuCx/6B0Q/4GDBqA/+wze1w9WS2kn0tP+9yzMCTZhxOD2Q==",
+  "dgSpecHash": "N2GNS1T6yrOyaartj8STKwL2xfrQtRMOm8RlaJ+sph0qJLQqN6OOhWxvfil7DntQ4Ed3aBoFe99V63R0mMqDsA==",
   "success": true,
   "projectFilePath": "F:\\coding\\MAUI\\MAUIDemo\\MauiDemo\\MauiDemo.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\MinerOAO\\.nuget\\packages\\communitytoolkit.maui\\5.0.0\\communitytoolkit.maui.5.0.0.nupkg.sha512",
+    "C:\\Users\\MinerOAO\\.nuget\\packages\\communitytoolkit.maui.core\\5.0.0\\communitytoolkit.maui.core.5.0.0.nupkg.sha512",
     "C:\\Users\\MinerOAO\\.nuget\\packages\\googlegson\\2.9.1.1\\googlegson.2.9.1.1.nupkg.sha512",
-    "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.ai.directml\\1.9.1\\microsoft.ai.directml.1.9.1.nupkg.sha512",
     "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",
     "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
@@ -18,8 +19,8 @@
     "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.graphics.win2d\\1.0.4\\microsoft.graphics.win2d.1.0.4.nupkg.sha512",
     "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.maui.graphics\\7.0.59\\microsoft.maui.graphics.7.0.59.nupkg.sha512",
     "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.maui.graphics.win2d.winui.desktop\\7.0.59\\microsoft.maui.graphics.win2d.winui.desktop.7.0.59.nupkg.sha512",
-    "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.ml.onnxruntime.directml\\1.13.1\\microsoft.ml.onnxruntime.directml.1.13.1.nupkg.sha512",
-    "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.ml.onnxruntime.managed\\1.14.0\\microsoft.ml.onnxruntime.managed.1.14.0.nupkg.sha512",
+    "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.ml.onnxruntime\\1.14.1\\microsoft.ml.onnxruntime.1.14.1.nupkg.sha512",
+    "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.ml.onnxruntime.managed\\1.14.1\\microsoft.ml.onnxruntime.managed.1.14.1.nupkg.sha512",
     "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.22621.755\\microsoft.windows.sdk.buildtools.10.0.22621.755.nupkg.sha512",
     "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.windowsappsdk\\1.2.221209.1\\microsoft.windowsappsdk.1.2.221209.1.nupkg.sha512",
@@ -111,9 +112,9 @@
     "C:\\Users\\MinerOAO\\.nuget\\packages\\xamarin.kotlinx.coroutines.android\\1.6.4.1\\xamarin.kotlinx.coroutines.android.1.6.4.1.nupkg.sha512",
     "C:\\Users\\MinerOAO\\.nuget\\packages\\xamarin.kotlinx.coroutines.core.jvm\\1.6.4.1\\xamarin.kotlinx.coroutines.core.jvm.1.6.4.1.nupkg.sha512",
     "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.28\\microsoft.windows.sdk.net.ref.10.0.19041.28.nupkg.sha512",
-    "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.3\\microsoft.aspnetcore.app.runtime.win-x64.7.0.3.nupkg.sha512",
-    "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\7.0.3\\microsoft.windowsdesktop.app.runtime.win-x64.7.0.3.nupkg.sha512",
-    "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\7.0.3\\microsoft.netcore.app.runtime.win-x64.7.0.3.nupkg.sha512"
+    "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.4\\microsoft.aspnetcore.app.runtime.win-x64.7.0.4.nupkg.sha512",
+    "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\7.0.4\\microsoft.windowsdesktop.app.runtime.win-x64.7.0.4.nupkg.sha512",
+    "C:\\Users\\MinerOAO\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\7.0.4\\microsoft.netcore.app.runtime.win-x64.7.0.4.nupkg.sha512"
   ],
   "logs": []
 }

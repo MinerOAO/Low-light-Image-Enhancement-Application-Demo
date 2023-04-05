@@ -1,7 +1,3 @@
-DirectML.Debug.dll
-DirectML.Debug.pdb
-DirectML.dll
-DirectML.pdb
 OpenSans-Regular.ttf
 OpenSans-Semibold.ttf
 appicon.ico
@@ -60,8 +56,6 @@ splashSplashScreen.scale-125.png
 splashSplashScreen.scale-150.png
 splashSplashScreen.scale-200.png
 splashSplashScreen.scale-400.png
+.onnx
 AboutAssets.txt
-Bread_onnx_all_halfres_optimized.onnx
-Bread_onnx_all_halfres_test.onnx
-Bread_onnx_optimized.onnx
-Bread_onnx_test.onnx
+Bread_onnx_fullres_test.onnx
