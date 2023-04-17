@@ -1,9 +1,9 @@
-using MauiDemo.Models;
 using MauiDemo.Models.Interface.OnnxRuntimeWrapper;
 using CommunityToolkit.Maui.Views;
 using System.Globalization;
 using System.Diagnostics;
 using System.ComponentModel;
+using MauiDemo.Models.Interface.PickPageModel;
 
 namespace MauiDemo.Views;
 
@@ -88,6 +88,7 @@ public partial class PickPage : ContentPage
 
             popup = new PopupPage(ref model);
             popup.CanBeDismissedByTappingOutsideOfPopup = false;
+            popup.State.State = PopupInternalState.LoadingImage;
             this.ShowPopup(popup);
 
             await model.LoadToRgb24(await result.OpenReadAsync(), result.FileName);
@@ -111,6 +112,7 @@ public partial class PickPage : ContentPage
     private async void OnInferenceClicked(object sender, EventArgs e)
     {
         popup = new PopupPage(ref model);
+        popup.State.State = PopupInternalState.Inferencing;
         this.ShowPopup(popup);
         if(model.StateV2.ModelState == InternalState.ImageLoaded)
         {
@@ -131,6 +133,7 @@ public partial class PickPage : ContentPage
 
             popup = new PopupPage(ref model);
             popup.CanBeDismissedByTappingOutsideOfPopup = false;
+            popup.State.State = PopupInternalState.LoadingImage;
             this.ShowPopup(popup);
 
             await model.LoadToRgb24(await result.OpenReadAsync(), result.FileName);

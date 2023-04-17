@@ -2,6 +2,8 @@
 using SixLabors.ImageSharp;
 using Microsoft.ML.OnnxRuntime;
 using System.Diagnostics;
+using SkiaSharp;
+using Microsoft.ML.OnnxRuntime.Tensors;
 
 namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
 {
@@ -29,12 +31,19 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
         private InferenceSession _session = null;
 
         private Dictionary<int, IEnumerable<float>> outputData = new Dictionary<int, IEnumerable<float>>();
+#if ANDROID
+        public partial Task<string> StartInference(SKBitmap RGBImage, float gamma, float strength, int quality, InferenceType type = InferenceType.Entire);
+#else
         public partial Task<string> StartInference(Image<Rgb24> RGBImage, float gamma, float strength, int quality, InferenceType type = InferenceType.Entire);
+#endif
+
         //Multi-platform Method Restricts
         //partial methods to be without access modifiers
         //returns void
-        partial void Run(List<NamedOnnxValue> inputData, ref int sessionID);
+        private partial int Run(ref Tensor<float> gammaTensor, ref Tensor<float> strengthTensor, ref DenseTensor<float> inputTensor);
 
+
+        //Constructor
         public async static Task<OnnxRuntimeWrapper> LoadModel(string modelName)
         {
             using (var rawStream = await FileSystem.OpenAppPackageFileAsync(modelName))
