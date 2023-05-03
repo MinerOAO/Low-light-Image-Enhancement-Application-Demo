@@ -42,8 +42,14 @@ namespace MauiDemo.Models.Interface.PickPageModel
         private SKBitmap FitSKBitmap()
         {
             var image = _image.Copy();
-
-            if(_isDownSample)
+            if (IsPreViewDownSample)
+            {
+                if(_image.Width > _image.Height)
+                    image = image.Resize(new SKSizeI(_image.Width / 16, _image.Height / 16), SKFilterQuality.High);
+                else
+                    image = image.Resize(new SKSizeI(_image.Width / 16, _image.Height / 16), SKFilterQuality.High);
+            }
+            else if (IsDownSample)
                 image = image.Resize(new SKSizeI(_image.Width / 2, _image.Height / 2), SKFilterQuality.High);
 
             int actualFactor = _internalCropFactor * _externalCropFactor;
@@ -76,7 +82,6 @@ namespace MauiDemo.Models.Interface.PickPageModel
                     }
                 }
             }
-
             return cropped;
         }
         public async partial Task<string> Inference()
@@ -91,13 +96,13 @@ namespace MauiDemo.Models.Interface.PickPageModel
                 await Task.Run(async () =>
                 {
                     var fittImage = FitSKBitmap();
-                    var ortWrapper = await OnnxRuntimeWrapper.OnnxRuntimeWrapper.LoadModel("Bread_onnx_fullres_new_test.onnx");
+                    var ortWrapper = await OnnxRuntimeWrapper.OnnxRuntimeWrapper.LoadModel();
                     // 量化时，注意onnxruntime的python版本与C# nupackage版本中opset算子版本
                     // x86-64 with VNNI, GPU with Tensor Core int8 support and ARM with dot-product instructions can get better performance in general.
                     //var ort = await OnnxRuntimeWrapper.LoadModel("Bread_onnx_optimized_dynamic_quantized.onnx");
 
 
-                    resultName = await ortWrapper.StartInference(fittImage, _gamma, _strength, _quality, _type);
+                    resultName = await ortWrapper.StartInference(fittImage, Gamma, Strength, Quality, Type);
                 });
             }
             catch (Exception ex)

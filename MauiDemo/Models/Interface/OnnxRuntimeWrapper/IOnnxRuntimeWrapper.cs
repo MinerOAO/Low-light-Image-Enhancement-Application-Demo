@@ -44,7 +44,7 @@ namespace MauiDemo.Models.Interface.OnnxRuntimeWrapper
 
 
         //Constructor
-        public async static Task<OnnxRuntimeWrapper> LoadModel(string modelName)
+        public async static Task<OnnxRuntimeWrapper> LoadModel(string modelName="Bread_onnx_fullres_new_test.onnx")
         {
             using (var rawStream = await FileSystem.OpenAppPackageFileAsync(modelName))
             {

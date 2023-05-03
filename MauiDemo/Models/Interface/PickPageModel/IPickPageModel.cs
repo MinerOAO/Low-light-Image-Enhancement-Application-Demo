@@ -33,7 +33,6 @@ namespace MauiDemo.Models.Interface.PickPageModel
 #endif
 
         public ModelStateV2 StateV2;
-
         public CancellationTokenSource cts;
 
         private int _testCounter = 0;
@@ -54,6 +53,19 @@ namespace MauiDemo.Models.Interface.PickPageModel
 
         private bool _isDownSample = false;
         public bool IsDownSample { get { return _isDownSample; } set { _isDownSample = value; } }
+
+        private bool _isPreViewDownSample = false;
+        public bool IsPreViewDownSample { 
+            get 
+            { 
+                if(_isPreViewDownSample == true)
+                {
+                    _isPreViewDownSample = false;
+                    return true;
+                }
+                return _isPreViewDownSample;
+            } 
+            set { _isPreViewDownSample = value; } }
 
         private float _gamma;
         public float Gamma { get { return _gamma; } set { _gamma = value; } }
@@ -89,7 +101,7 @@ namespace MauiDemo.Models.Interface.PickPageModel
     {
         Idle,
         ImageLoaded,
-        Inferencing
+        Inferencing,
     }
     public class ModelStateV2 : INotifyPropertyChanged
     {

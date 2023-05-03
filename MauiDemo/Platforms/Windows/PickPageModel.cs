@@ -1,6 +1,7 @@
 ﻿using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
+using SkiaSharp;
 
 namespace MauiDemo.Models.Interface.PickPageModel
 {
@@ -36,7 +37,14 @@ namespace MauiDemo.Models.Interface.PickPageModel
         private Image<Rgb24> FitImageSharp()
         {
             var image = _image.CloneAs<Rgb24>();
-            if (_isDownSample)
+            if (IsPreViewDownSample)
+            {
+                if (_image.Width > _image.Height)
+                    image.Mutate(x => x.Resize(256, _image.Height / _image.Width * 256));
+                else
+                    image.Mutate(x => x.Resize(_image.Width / _image.Height * 256, 256));
+            }
+            else if (IsDownSample)
             {
                 image.Mutate(x => x.Resize(_image.Width / 2, _image.Height / 2));
             }
@@ -59,11 +67,11 @@ namespace MauiDemo.Models.Interface.PickPageModel
                 {
                     using (var fittImage = FitImageSharp())
                     {
-                        var ortWrapper = await OnnxRuntimeWrapper.OnnxRuntimeWrapper.LoadModel("Bread_onnx_fullres_optimized.onnx");
+                        var ortWrapper = await OnnxRuntimeWrapper.OnnxRuntimeWrapper.LoadModel();
                         // 量化时，注意onnxruntime的python版本与C# nupackage版本中opset算子版本
                         // x86-64 with VNNI, GPU with Tensor Core int8 support and ARM with dot-product instructions can get better performance in general.
                         //var ort = await OnnxRuntimeWrapper.LoadModel("Bread_onnx_optimized_dynamic_quantized.onnx");
-                        resultName = await ortWrapper.StartInference(fittImage, _gamma, _strength, _quality, _type);
+                        resultName = await ortWrapper.StartInference(fittImage, Gamma, Strength, Quality, Type);
                     }
                 });
             }

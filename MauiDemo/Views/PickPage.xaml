@@ -10,11 +10,19 @@
         <Image
                 x:Name="PickedImage"
                 SemanticProperties.Description="Image"
+                VerticalOptions="EndAndExpand"
                 HorizontalOptions="Center"
                 Aspect="AspectFit"
                 MinimumHeightRequest="100"
                 MaximumHeightRequest="300"
-            />
+                Grid.Row="0"
+                Grid.Column="0">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"
+                                      Buttons="Primary,Secondary"
+                                      NumberOfTapsRequired="2"/>
+            </Image.GestureRecognizers>
+        </Image>
         <VerticalStackLayout
             HorizontalOptions="Fill">
             <HorizontalStackLayout>

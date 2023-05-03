@@ -13,6 +13,40 @@ public enum PopupInternalState
     Inferencing,
     Others
 }
+public class PopupState : INotifyPropertyChanged
+{
+    private PopupInternalState _state;
+
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    // The constructor is private to enforce the factory pattern.  
+    public PopupState()
+    {
+        _state = PopupInternalState.Default;
+    }
+
+    public PopupInternalState State
+    {
+        get
+        {
+            return this._state;
+        }
+
+        set
+        {
+            if (value != this._state)
+            {
+                this._state = value;
+                NotifyPropertyChanged();
+            }
+        }
+    }
+}
 public partial class PopupPage : Popup
 {
     readonly PickPageModel _model = null;
@@ -33,11 +67,6 @@ public partial class PopupPage : Popup
         IsClosed = true;
         State.State = PopupInternalState.Default;
     }
-
-    private void OnBGClicked(object sender, EventArgs e)
-	{
-
-	}
     private void OnStateChanged(object sender, PropertyChangedEventArgs e)
     {
         switch(State.State)
@@ -49,7 +78,7 @@ public partial class PopupPage : Popup
                 }
             case PopupInternalState.Inferencing:
                 {
-                    Info.Text = "Inferencing. Please wait...";
+                    Info.Text = "Inferencing\nPlease wait...";
                     break;
                 }
             case PopupInternalState.Others:
@@ -66,40 +95,6 @@ public partial class PopupPage : Popup
 
         }
 
-    }
-    public class PopupState : INotifyPropertyChanged
-    {
-        private PopupInternalState _state;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        // The constructor is private to enforce the factory pattern.  
-        public PopupState()
-        {
-            _state = PopupInternalState.Default;
-        }
-
-        public PopupInternalState State
-        {
-            get
-            {
-                return this._state;
-            }
-
-            set
-            {
-                if (value != this._state)
-                {
-                    this._state = value;
-                    NotifyPropertyChanged();
-                }
-            }
-        }
     }
 
 }
