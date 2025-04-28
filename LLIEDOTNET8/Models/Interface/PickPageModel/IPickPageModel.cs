@@ -1,12 +1,8 @@
-﻿#if ANDROID
-using SkiaSharp;
-#else
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
-#endif
-using LLIEDOTNET8.Models.Interface.OnnxRuntimeWrapper;
+﻿using LLIEDOTNET8.Models.Interface.OnnxRuntimeWrapper;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp;
 
 namespace LLIEDOTNET8.Models.Interface.PickPageModel
 {
@@ -26,11 +22,7 @@ namespace LLIEDOTNET8.Models.Interface.PickPageModel
 
         }
 
-#if ANDROID
-        private SKBitmap _image;
-#else
         private Image<Rgb24> _image;
-#endif
 
         public ModelStateV2 StateV2;
         public CancellationTokenSource cts;

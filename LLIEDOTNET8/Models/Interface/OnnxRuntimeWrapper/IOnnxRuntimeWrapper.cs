@@ -2,7 +2,6 @@
 using Microsoft.ML.OnnxRuntime.Tensors;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
-using SkiaSharp;
 
 namespace LLIEDOTNET8.Models.Interface.OnnxRuntimeWrapper
 {
@@ -30,12 +29,7 @@ namespace LLIEDOTNET8.Models.Interface.OnnxRuntimeWrapper
         private InferenceSession _session = null;
 
         private Dictionary<int, IEnumerable<float>> outputData = new Dictionary<int, IEnumerable<float>>();
-#if ANDROID
-        public partial Task<string> StartInference(SKBitmap RGBImage, float gamma, float strength, int quality, InferenceType type = InferenceType.Entire);
-#else
         public partial Task<string> StartInference(Image<Rgb24> RGBImage, float gamma, float strength, int quality, InferenceType type = InferenceType.Entire);
-#endif
-
         //Multi-platform Method Restricts
         //partial methods to be without access modifiers
         //returns void
