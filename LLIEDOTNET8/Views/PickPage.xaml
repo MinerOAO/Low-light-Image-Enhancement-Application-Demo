@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LLIEDOTNET8.Views.PickPage"
+             Title="PickPage">
+    <FlexLayout
+        Direction="Column"
+        AlignItems="Center"
+        JustifyContent="SpaceEvenly">
+        <Image
+                x:Name="PickedImage"
+                SemanticProperties.Description="Image"
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="Center"
+                Aspect="AspectFit"
+                MinimumHeightRequest="100"
+                MaximumHeightRequest="300"
+                Grid.Row="0"
+                Grid.Column="0">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnTapGestureRecognizerTapped"
+                                      Buttons="Primary,Secondary"
+                                      NumberOfTapsRequired="1"/>
+            </Image.GestureRecognizers>
+        </Image>
+        <VerticalStackLayout
+            HorizontalOptions="Fill">
+            <HorizontalStackLayout>
+                <Picker 
+                    x:Name="typePicker"
+                    Title="Select a inference type">
+                </Picker>
+                <HorizontalStackLayout>
+                    <CheckBox
+                        x:Name="DownSampleCheckBox"
+                        IsChecked="true" 
+                        CheckedChanged="OnDownSampleCheckBoxChanged"
+                        VerticalOptions="EndAndExpand">
+                    </CheckBox>
+                    <Label 
+                        Text="Downsample"
+                        FontSize="18"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"/>
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
+            <Label 
+                x:Name="GammaSliderValueDisplay"
+                Text="{Binding Source={x:Reference GammaSlider},
+                              Path=Value,
+                              StringFormat='Gamma {0:F2}'}" />
+            <Slider 
+                x:Name="GammaSlider"
+                Maximum="1.5"
+                Minimum="0.5"
+                ValueChanged="OnSliderValueChanged" />
+            <Label 
+                x:Name="StrengthSliderValueDisplay"
+                Text="{Binding Source={x:Reference StrengthSlider},
+                            Path=Value,
+                            StringFormat='Denoise Strength {0:F2}'}"/>
+            <Slider 
+                x:Name="StrengthSlider"
+                Maximum="0.50"
+                Minimum="0.10"
+                ValueChanged="OnSliderValueChanged" />
+            <Label 
+                x:Name="QualitySliderValueDisplay"
+                Text="{Binding Source={x:Reference QualitySlider},
+                            Path=Value,
+                            StringFormat='Image Quality {0:F0}'}"/>
+            <Slider 
+                x:Name="QualitySlider"
+                Maximum="100"
+                Minimum="10"
+                ValueChanged="OnSliderValueChanged" />
+        </VerticalStackLayout>
+        <Button
+                x:Name="InferenceBtn"
+                Text="Start!"
+                SemanticProperties.Hint="Start Inference"
+                Clicked="OnInferenceClicked"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                MinimumWidthRequest="100"
+                WidthRequest="150"
+                MaximumWidthRequest="200"
+                IsEnabled="False"
+                />
+        <Button
+                x:Name="PickBtn"
+                Text="Pick an image"
+                SemanticProperties.Hint="Pick image from device storage"
+                Clicked="OnPickClicked"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"
+                MinimumWidthRequest="100"
+                WidthRequest="150"
+                MaximumWidthRequest="200"
+           />
+        <Button
+                x:Name="PhotoBtn"
+                Text="Shot"
+                SemanticProperties.Hint="Take a photo"
+                Clicked="OnPhotoClicked"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                MinimumWidthRequest="100"
+                WidthRequest="150"
+                MaximumWidthRequest="200"
+                />
+    </FlexLayout>
+</ContentPage>
